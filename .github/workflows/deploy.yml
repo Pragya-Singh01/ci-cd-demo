@@ -9,9 +9,21 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    permissions:
+      pages: write
+      id-token: write
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: .
+
       - name: Deploy to GitHub Pages
-        run: echo "Deploy step coming next"
+        uses: actions/deploy-pages@v2
